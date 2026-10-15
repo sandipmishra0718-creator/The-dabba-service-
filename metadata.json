@@ -1,0 +1,6 @@
+{
+  "name": "The Dabba Central",
+  "description": "Authentic home-style tiffin and meal service in BTM 2nd Stage, Bengaluru. Freshly prepared, wholesome Indian dabbas delivered hot for daily routines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

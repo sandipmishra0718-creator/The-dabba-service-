@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ivory: #F8F5EF;
+    --color-charcoal: #171715;
+    --color-charcoal-light: #232320;
+    --color-red: #B92326;
+    --color-saffron: #E7AA3C;
+    --color-grey-warm: #E8E2D8;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--color-charcoal);
+    color: var(--color-ivory);
+    overflow-x: hidden;
+  }
+}
+
+.font-editorial {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #171715;
+}
+::-webkit-scrollbar-thumb {
+  background: #383832;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B92326;
+}
+
+/* Lenis smooth scrolling styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom cursor hide on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor-element {
+    display: none !important;
+  }
+}
+
+/* 3D Showcase perspective container */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Infinite Marquee */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Floating sticker Yoyo */
+@keyframes floatYoyo {
+  0%, 100% { transform: translateY(0px) rotate(6deg); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+
+.animate-float-yoyo {
+  animation: floatYoyo 3.5s ease-in-out infinite;
+}
+
+@keyframes lightBeamBreath {
+  0%, 100% {
+    opacity: 0.45;
+    transform: rotate(-18deg) scaleY(1) translateY(0);
+  }
+  50% {
+    opacity: 0.75;
+    transform: rotate(-16deg) scaleY(1.08) translateY(-10px);
+  }
+}
+
+.ambient-light-beam {
+  animation: lightBeamBreath 8s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(231, 170, 60, 0.35) 0%, rgba(185, 35, 38, 0.18) 40%, transparent 75%);
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+@keyframes beaconRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-beacon-ring {
+  animation: beaconRing 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes horizonCorona {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.03);
+  }
+}
+
+.horizon-glow {
+  animation: horizonCorona 6s ease-in-out infinite;
+}
+
+/* Shimmer edge effect on hover for cards */
+.shimmer-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shimmer-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 40%, rgba(231, 170, 60, 0.4) 50%, transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.shimmer-card:hover::before {
+  opacity: 1;
+}
+
+/* Smooth reveal utility */
+.reveal-mask {
+  clip-path: inset(0 0 0 0 round 16px);
+  transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ambient-light-beam,
+  .animate-pulse-subtle,
+  .horizon-glow,
+  .animate-beacon-ring {
+    animation: none !important;
+  }
+}
+
